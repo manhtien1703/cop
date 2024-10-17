@@ -1,0 +1,120 @@
+0,Jun-26-2011,4000001,40.33,Exercise & Fitness,Cardio Machine Accessories,Clarksville,Tennessee,credit
+1,May-26-2011,4000002,198.44,Exercise & Fitness,Weightlifting Gloves,Long Beach,California,credit
+2,Jan-06-2011,4000002,5.58,Exercise & Fitness,Weightlifting Machine Accessories,Anaheim,California,credit
+3,May-06-2011,4000003,198.19,Gymnastics,Gymnastics Rings,Milwaukee,Wisconsin,credit
+4,Dec-17-2011,4000002,98.81,Team Sports,Field Hockey,Nashville  ,Tennessee,credit
+5,Feb-14-2011,4000004,193.63,Outdoor Recreation,Camping & Backpacking & Hiking,Chicago,Illinois,credit
+6,Oct-28-2011,4000005,27.89,Puzzles,Jigsaw Puzzles,Charleston,South Carolina,credit
+7,Jul-14-2011,4000006,96.01,Outdoor Play Equipment,Sandboxes,Columbus,Ohio,credit
+8,Jan-17-2011,4000006,10.44,Winter Sports,Snowmobiling,Des Moines,Iowa,credit
+9,May-17-2011,4000006,152.46,Jumping,Bungee Jumping,St. Petersburg,Florida,credit
+10,May-29-2011,4000007,180.28,Outdoor Recreation,Archery,Reno,Nevada,credit
+11,Jun-18-2011,4000009,121.39,Outdoor Play Equipment,Swing Sets,Columbus,Ohio,credit
+12,Aug-02-2011,4000009,41.52,Indoor Games,Bowling,San Francisco,California,credit
+13,Mar-13-2011,4000010,107.8,Team Sports,Field Hockey,Honolulu  ,Hawaii,credit
+14,Feb-25-2011,4000010,36.81,Gymnastics,Vaulting Horses,Los Angeles,California,credit
+15,Oct-20-2011,4000001,137.64,Combat Sports,Fencing,Honolulu  ,Hawaii,credit
+16,May-28-2011,4000010,35.56,Exercise & Fitness,Free Weight Bars,Columbia,South Carolina,credit
+17,Oct-18-2011,4000008,75.55,Water Sports,Scuba Diving & Snorkeling,Omaha,Nebraska,credit
+18,Nov-18-2011,4000008,88.65,Team Sports,Baseball,Salt Lake City,Utah,credit
+19,Aug-28-2011,4000008,51.81,Water Sports,Life Jackets,Newark,New Jersey,credit
+20,Jun-29-2011,4000005,41.55,Exercise & Fitness,Weightlifting Belts,New Orleans,Louisiana,credit
+21,Feb-14-2011,4000005,45.79,Air Sports,Parachutes,New York,New York,credit
+22,Oct-10-2011,4000009,19.64,Water Sports,Kitesurfing,Saint Paul,Minnesota,credit
+23,Feb-05-2011,4000009,99.5,Gymnastics,Gymnastics Rings,Springfield,Illinois,credit
+24,Oct-06-2011,4000003,151.2,Water Sports,Surfing,Plano,Texas,credit
+25,Oct-14-2011,4000009,144.2,Indoor Games,Darts,Phoenix,Arizona,credit
+26,Nov-10-2011,4000009,31.58,Combat Sports,Wrestling,Orange,California,credit
+27,Sep-29-2011,4000010,66.4,Games,Mahjong,Fremont,California,credit
+28,Dec-05-2011,4000008,79.78,Team Sports,Cricket,Lexington,Kentucky,credit
+29,Mar-06-2011,4000001,126.9,Outdoor Recreation,Hunting,Phoenix,Arizona,credit
+30,Mar-14-2011,4000001,47.05,Water Sports,Swimming,Lincoln,Nebraska,credit
+31,Nov-28-2011,4000008,5.03,Games,Dice & Dice Sets,Los Angeles,California,credit
+32,Jan-29-2011,4000008,20.13,Team Sports,Soccer,Springfield,Illinois,credit
+33,Jun-15-2011,4000008,154.15,Outdoor Recreation,Lawn Games,Nashville  ,Tennessee,credit
+34,Jun-05-2011,4000008,98.96,Team Sports,Indoor Volleyball,Atlanta,Georgia,credit
+35,Dec-04-2011,4000008,185.26,Games,Board Games,Centennial,Colorado,credit
+36,Oct-13-2011,4000007,35.66,Team Sports,Football,Saint Paul,Minnesota,credit
+37,Apr-19-2011,4000007,20.2,Outdoor Recreation,Shooting Games,San Diego,California,credit
+38,May-08-2011,4000007,150.6,Outdoor Recreation,Camping & Backpacking & Hiking,Hampton  ,Virginia,credit
+39,Dec-03-2011,4000006,174.36,Outdoor Play Equipment,Swing Sets,Pittsburgh,Pennsylvania,credit
+40,Jul-11-2011,4000005,165.1,Team Sports,Cheerleading,Reno,Nevada,credit
+41,Apr-16-2011,4000004,28.11,Indoor Games,Bowling,Westminster,Colorado,cash
+42,Oct-09-2011,4000004,38.52,Outdoor Recreation,Tetherball,Denton,Texas,cash
+43,Apr-22-2011,4000004,32.34,Water Sports,Water Polo,Las Vegas,Nevada,cash
+44,Nov-09-2011,4000001,135.37,Water Sports,Surfing,Seattle,Washington,credit
+45,Nov-27-2011,4000001,90.04,Exercise & Fitness,Abdominal Equipment,Honolulu  ,Hawaii,credit
+46,May-27-2011,4000001,52.29,Gymnastics,Vaulting Horses,Cleveland,Ohio,credit
+47,Oct-23-2011,4000008,100.1,Outdoor Play Equipment,Swing Sets,Everett,Washington,credit
+48,Sep-27-2011,4000007,157.94,Exercise & Fitness,Exercise Bands,Philadelphia,Pennsylvania,credit
+49,Dec-07-2011,4000010,144.59,Jumping,Jumping Stilts,Cambridge,Massachusetts,credit
+50,Oct-20-2011,4000010,55.93,Jumping,Pogo Sticks,Everett,Washington,credit
+51,Feb-17-2011,4000002,32.65,Water Sports,Life Jackets,Columbus,Georgia,cash
+52,Apr-02-2011,4000005,44.82,Outdoor Play Equipment,Lawn Water Slides,Hampton  ,Virginia,cash
+53,Dec-06-2011,4000004,44.46,Water Sports,Scuba Diving & Snorkeling,Charleston,South Carolina,cash
+54,Mar-10-2011,4000007,154.87,Outdoor Recreation,Running,Long Beach,California,credit
+55,Dec-16-2011,4000006,106.11,Water Sports,Swimming,New York,New York,credit
+56,Jun-21-2011,4000002,176.63,Outdoor Recreation,Geocaching,Boston,Massachusetts,credit
+57,Dec-20-2011,4000003,178.2,Outdoor Recreation,Skating,San Jose,California,credit
+58,Dec-29-2011,4000002,194.86,Water Sports,Windsurfing,Oklahoma City,Oklahoma,credit
+59,Jul-11-2011,4000003,21.43,Winter Sports,Snowboarding,Philadelphia,Pennsylvania,cash
+60,Aug-06-2011,4000010,29.79,Jumping,Jumping Stilts,Cambridge,Massachusetts,credit
+61,Mar-22-2011,4000009,43.49,Combat Sports,Wrestling,Orange,California,credit
+62,Jun-02-2011,4000001,62.63,Exercise & Fitness,Cardio Machine Accessories,Clarksville,Tennessee,credit
+63,Mar-20-2011,4000003,98.73,Water Sports,Surfing,Plano,Texas,credit
+64,Jan-14-2011,4000004,130.12,Outdoor Recreation,Camping & Backpacking & Hiking,Chicago,Illinois,credit
+65,Aug-28-2011,4000005,25.41,Outdoor Play Equipment,Lawn Water Slides,Hampton  ,Virginia,cash
+66,Jul-23-2011,4000002,151.18,Team Sports,Field Hockey,Nashville  ,Tennessee,credit
+67,Aug-19-2011,4000002,396.48,Exercise & Fitness,Weightlifting Gloves,Long Beach,California,credit
+68,Aug-11-2011,4000008,28.14,Team Sports,Soccer,Springfield,Illinois,credit
+69,May-09-2011,4000010,32.23,Team Sports,Field Hockey,Honolulu  ,Hawaii,credit
+70,Jun-06-2011,4000002,4.66,Exercise & Fitness,Weightlifting Machine Accessories,Anaheim,California,credit
+71,Mar-20-2011,4000004,42.14,Outdoor Recreation,Tetherball,Denton,Texas,cash
+72,Apr-04-2011,4000001,51.34,Combat Sports,Fencing,Honolulu  ,Hawaii,credit
+73,Jun-12-2011,4000003,299.07,Water Sports,Surfing,Plano,Texas,credit
+74,Jul-05-2011,4000007,251.05,Outdoor Recreation,Camping & Backpacking & Hiking,Hampton  ,Virginia,credit
+75,Mar-08-2011,4000008,188.32,Team Sports,Indoor Volleyball,Atlanta,Georgia,credit
+76,Apr-24-2011,4000010,71.12,Gymnastics,Vaulting Horses,Los Angeles,California,credit
+77,Aug-22-2011,4000007,30.82,Outdoor Recreation,Running,Long Beach,California,credit
+78,Jan-07-2011,4000007,228.07,Exercise & Fitness,Exercise Bands,Philadelphia,Pennsylvania,credit
+79,Sep-01-2011,4000009,202.89,Indoor Games,Darts,Phoenix,Arizona,credit
+80,Jun-10-2011,4000001,70.68,Outdoor Recreation,Hunting,Phoenix,Arizona,credit
+81,Jan-01-2011,4000010,106.77,Games,Mahjong,Fremont,California,credit
+82,Nov-04-2011,4000004,358.22,Outdoor Recreation,Camping & Backpacking & Hiking,Chicago,Illinois,credit
+83,Dec-20-2011,4000008,138.91,Team Sports,Baseball,Salt Lake City,Utah,credit
+84,May-01-2011,4000008,9.87,Games,Dice & Dice Sets,Los Angeles,California,credit
+85,Dec-20-2011,4000007,194.88,Outdoor Recreation,Archery,Reno,Nevada,credit
+86,May-31-2011,4000005,51.4,Puzzles,Jigsaw Puzzles,Charleston,South Carolina,credit
+87,May-17-2011,4000003,232.09,Water Sports,Surfing,Plano,Texas,credit
+88,Jul-30-2011,4000004,7.73,Water Sports,Water Polo,Las Vegas,Nevada,cash
+89,Jan-27-2011,4000009,20.68,Water Sports,Kitesurfing,Saint Paul,Minnesota,credit
+90,Apr-21-2011,4000001,60.45,Gymnastics,Vaulting Horses,Cleveland,Ohio,credit
+91,Feb-04-2011,4000004,53.68,Water Sports,Water Polo,Las Vegas,Nevada,cash
+92,Jul-03-2011,4000002,8.4,Exercise & Fitness,Weightlifting Machine Accessories,Anaheim,California,credit
+93,May-04-2011,4000004,317.94,Outdoor Recreation,Camping & Backpacking & Hiking,Chicago,Illinois,credit
+94,Feb-06-2011,4000005,292.89,Team Sports,Cheerleading,Reno,Nevada,credit
+95,Apr-10-2011,4000007,28.5,Outdoor Recreation,Running,Long Beach,California,credit
+96,Mar-15-2011,4000003,119.22,Outdoor Recreation,Skating,San Jose,California,credit
+97,Oct-11-2011,4000005,153.87,Team Sports,Cheerleading,Reno,Nevada,credit
+98,Feb-01-2011,4000002,28.01,Water Sports,Life Jackets,Columbus,Georgia,cash
+99,Jun-10-2011,4000009,10.23,Combat Sports,Wrestling,Orange,California,credit
+100,Jun-18-2011,4000001,31.37,Gymnastics,Vaulting Horses,Cleveland,Ohio,credit
+101,Feb-01-2011,4000002,224.24,Exercise & Fitness,Weightlifting Gloves,Long Beach,California,credit
+102,Jul-14-2011,4000007,206.9,Exercise & Fitness,Exercise Bands,Philadelphia,Pennsylvania,credit
+103,Nov-15-2011,4000009,113.74,Outdoor Play Equipment,Swing Sets,Columbus,Ohio,credit
+104,Nov-10-2011,4000005,10.62,Air Sports,Parachutes,New York,New York,credit
+105,Dec-18-2011,4000003,111.73,Outdoor Recreation,Skating,San Jose,California,credit
+106,Oct-02-2011,4000002,17.14,Water Sports,Life Jackets,Columbus,Georgia,cash
+107,Nov-10-2011,4000002,10.05,Exercise & Fitness,Weightlifting Machine Accessories,Anaheim,California,credit
+108,Oct-18-2011,4000002,299.3,Water Sports,Windsurfing,Oklahoma City,Oklahoma,credit
+109,Dec-08-2011,4000004,42.25,Indoor Games,Bowling,Westminster,Colorado,cash
+110,Jun-27-2011,4000008,99.8,Outdoor Play Equipment,Swing Sets,Everett,Washington,credit
+111,Nov-07-2011,4000009,233.19,Outdoor Play Equipment,Swing Sets,Columbus,Ohio,credit
+112,Feb-16-2011,4000006,7.37,Winter Sports,Snowmobiling,Des Moines,Iowa,credit
+113,Mar-15-2011,4000009,53.85,Indoor Games,Bowling,San Francisco,California,credit
+114,May-16-2011,4000003,64.21,Gymnastics,Gymnastics Rings,Milwaukee,Wisconsin,credit
+115,Sep-20-2011,4000005,41.05,Exercise & Fitness,Weightlifting Belts,New Orleans,Louisiana,credit
+116,Feb-14-2011,4000008,134.78,Team Sports,Indoor Volleyball,Atlanta,Georgia,credit
+117,Mar-05-2011,4000002,13.32,Water Sports,Life Jackets,Columbus,Georgia,cash
+118,Jul-18-2011,4000003,292.07,Outdoor Recreation,Skating,San Jose,California,credit
+119,Nov-10-2011,4000004,45.04,Water Sports,Scuba Diving & Snorkeling,Charleston,South Carolina,cash
