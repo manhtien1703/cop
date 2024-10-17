@@ -1,0 +1,129 @@
+Apr	Sherri-1 Gretchen-2 Paige-1 Elsie-3 Karen-2 Kristina-2 Malcolm-1 Hazel-2 Dolores-1
+Aug	Gretchen-2 Paige-2 Patrick-2 Elsie-1 Karen-3 Kristina-2 Malcolm-1 Hazel-2 Dolores-4
+Dec	Sherri-2 Gretchen-3 Paige-3 Patrick-3 Elsie-3 Kristina-1 Malcolm-2 Hazel-5 Dolores-2
+Feb	Gretchen-3 Paige-3 Patrick-3 Karen-2 Elsie-1 Kristina-2 Malcolm-2 Hazel-3 Dolores-2
+Jan	Sherri-1 Gretchen-1 Paige-4 Patrick-3 Elsie-1 Kristina-1 Dolores-3 Malcolm-2 Hazel-4
+Jul	Sherri-5 Gretchen-2 Paige-3 Patrick-2 Elsie-4 Karen-2 Hazel-3
+Jun	Sherri-2 Gretchen-1 Paige-2 Elsie-1 Karen-1 Kristina-5 Dolores-1 Malcolm-4 Hazel-3
+Mar	Sherri-4 Gretchen-2 Paige-1 Elsie-1 Karen-1 Kristina-3 Hazel-1 Malcolm-3 Dolores-3
+May	Sherri-3 Gretchen-2 Paige-3 Patrick-3 Elsie-3 Karen-3 Kristina-1 Malcolm-1 Hazel-1 Dolores-3
+Nov	Sherri-1 Gretchen-3 Paige-2 Karen-1 Kristina-4 Malcolm-3 Hazel-2 Dolores-1
+Oct	Sherri-2 Gretchen-1 Paige-4 Patrick-1 Elsie-3 Karen-5 Kristina-3 Dolores-2 Hazel-3 Malcolm-3
+Sep	Gretchen-1 Paige-1 Karen-2 Elsie-4 Kristina-1 Dolores-1 Malcolm-1 Hazel-3
+
+
+import java.io.*;
+import java.util.*;
+import java.net.URI;
+
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+
+public class MapsideJoin {
+
+	public static class TransMapper extends Mapper<Object, Text, Text, Text> {
+		// user map to keep the userId-userName
+		private Map<Integer, String> userMap = new HashMap<>();
+
+		public void setup(Context context) throws IOException,
+				InterruptedException {
+			try (BufferedReader br = new BufferedReader(new FileReader(
+					"cust.txt"))) {
+				String line;
+				while ((line = br.readLine()) != null) {
+					String columns[] = line.split(",");
+					String id = columns[0];
+					String name = columns[1];
+					userMap.put(Integer.parseInt(id), name);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		public void map(Object key, Text value, Context context)
+				throws IOException, InterruptedException {
+			System.out.println("Input value: " + value.toString());
+			String[] fields = value.toString().split(",");
+		    // Validate input length
+		    if (fields.length < 3) {
+		        System.err.println("Invalid input line: " + value.toString());
+		        return; // Skip this line if it's invalid
+		    }
+			String dateStr = fields[1]; // Assuming date is in the 2nd column
+			String custId = fields[2]; // Assuming Cust ID is in the 3rd column
+
+			String month = dateStr.split("-").length > 0 ? dateStr.split("-")[0] : "error";
+			
+			String firstName = userMap.get(Integer.parseInt(custId)); // Join using Cust ID
+			 if (firstName != null && month != null) {
+			        context.write(new Text(month), new Text(firstName));
+			 
+			    }else{
+			    	context.write(new Text("loi"), new Text("loi"));
+			    }
+
+		}
+	}
+
+	static public class TransReducer extends Reducer<Text, Text, Text, Text> {
+
+		@Override
+		public void reduce(Text key, Iterable<Text> values, Context context)
+				throws IOException, InterruptedException {
+			Map<String, Integer> userCount = new HashMap<>();
+			Set<String> names = new HashSet<>();
+
+			// Count number of transactions per player for each month
+			for (Text value : values) {
+				String name = value.toString();
+				if (!names.contains(name)) {
+					names.add(name);
+					userCount.put(name, 1);
+				} else {
+					userCount.put(name, userCount.get(name) + 1);
+				}
+			}
+
+			// Create output string in the required format
+			String result = "";
+			for (Map.Entry<String, Integer> entry : userCount.entrySet()) {
+				result += entry.getKey() + "-" + entry.getValue() + " ";
+			}
+			
+			System.out.println(result);
+
+			// Write the month and result to the context
+			context.write(key, new Text(result.toString().trim()));
+		}
+	}
+
+
+public static void main(String[] args) throws Exception {
+		Configuration conf = new Configuration();
+		Job job = Job.getInstance(conf, "Mapside Join");
+		job.setJarByClass(MapsideJoin.class);
+		job.setMapperClass(TransMapper.class);
+		job.setReducerClass(TransReducer.class);
+		job.setOutputKeyClass(Text.class);
+		job.setOutputValueClass(Text.class);
+
+		try {
+
+			job.addCacheFile(new URI("hdfs://localhost:8020/mycache/cust.txt"));
+		} catch (Exception e) {
+			System.out.println("File Not Added");
+			System.exit(1);
+		}
+
+		FileInputFormat.addInputPath(job, new Path(args[0]));
+		FileOutputFormat.setOutputPath(job, new Path(args[1]));
+		System.exit(job.waitForCompletion(true) ? 0 : 1);
+	}
+}
