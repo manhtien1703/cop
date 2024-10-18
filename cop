@@ -1,0 +1,46 @@
+#mapper1
+import sys
+import csv
+
+# Load stock info to identify NYSE stocks
+stock_info = {}
+with open('stock_info.csv') as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+        if row['Exchange'] == 'NYSE':
+            stock_info[row['Ticker']] = row['Name']
+
+# Mapper processing the stock data
+for line in sys.stdin:
+    # Parse the line into date and stock information
+    values = line.strip().split(',')
+    if len(values) == 7:
+        date, open_price, high, low, close_price, volume, open_int = values
+
+        # Filter for rows with valid numeric values
+        try:
+            open_price = float(open_price)
+            close_price = float(close_price)
+        except ValueError:
+            continue
+
+        # Extract ticker from file name (assuming ticker is part of file name in HDFS)
+        filename = os.environ['map_input_file']
+        ticker = os.path.basename(filename).replace('.txt', '')
+
+        # Check if ticker is in NYSE stocks
+        if ticker in stock_info:
+            # If open price is higher than close price, emit the result
+            if open_price > close_price:
+                print(f"{ticker},{stock_info[ticker]}")
+#reducer1
+import sys
+
+current_ticker = None
+
+# Reducer logic to remove duplicates
+for line in sys.stdin:
+    ticker, name = line.strip().split(',')
+    if ticker != current_ticker:
+        print(f"{ticker},{name}")
+        current_ticker = ticker
