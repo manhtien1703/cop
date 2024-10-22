@@ -8,16 +8,25 @@ def reducer():
     count = 0
 
     for line in sys.stdin:
-        ticker, value = line.strip().split('\t')
+        line = line.strip()  # Loại bỏ khoảng trắng thừa
+        if not line:  # Kiểm tra nếu dòng trống
+            continue  # Bỏ qua dòng trống
+
+        try:
+            ticker, value = line.split('\t')  # Phân tách ticker và value
+            value = int(value)  # Chuyển value sang int
+        except ValueError:
+            print("Skipping line: '{}' due to ValueError".format(line))
+            continue  # Bỏ qua dòng nếu không có định dạng đúng
 
         if current_ticker == ticker:
-            count += int(value)
+            count += value
         else:
             if current_ticker:
                 # In ra ticker khi có giá Open > Close
                 print '%s\t%d' % (current_ticker, count)
             current_ticker = ticker
-            count = int(value)
+            count = value
 
     # In ticker cuối cùng
     if current_ticker:
