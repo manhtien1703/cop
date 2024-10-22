@@ -16,28 +16,37 @@ def load_nyse_tickers():
                 nyse_tickers.add(convert_ticker_name(row['Ticker']))
     return nyse_tickers
 
+# Hàm xử lý file cổ phiếu
+def process_file(file_path, ticker, nyse_tickers):
+    # Kiểm tra nếu ticker thuộc NYSE
+    if ticker in nyse_tickers:
+        with open(file_path, 'r') as file:
+            next(file)  # Bỏ qua dòng tiêu đề
+            for line in file:
+                data = line.strip().split(',')
+                open_price = float(data[1])  # Giá Open
+                close_price = float(data[4])  # Giá Close
+
+                # Nếu giá Open > Close, phát ra (ticker, 1)
+                if open_price > close_price:
+                    print(f'{ticker}\t1')
+
 # Hàm mapper
 def mapper():
     nyse_tickers = load_nyse_tickers()  # Tải ticker thuộc NYSE
-    stock_folder = 'Stocks'  # Thư mục chứa các file cổ phiếu
+    directories = ['Stocks', 'ETFs']  # Duyệt qua cả thư mục Stocks và ETFs
 
-    # Duyệt qua tất cả các file trong folder Stocks
-    for file_name in os.listdir(stock_folder):
-        ticker = file_name.split('.')[0]  # Lấy tên file, bỏ phần .us.txt
-        if ticker in nyse_tickers:  # Chỉ xử lý nếu ticker thuộc NYSE
-            with open(os.path.join(stock_folder, file_name), 'r') as file:
-                next(file)  # Bỏ qua dòng tiêu đề
-                for line in file:
-                    data = line.strip().split(',')
-                    open_price = float(data[1])  # Giá Open
-                    close_price = float(data[4])  # Giá Close
-
-                    # Nếu giá Open > Close, phát ra (ticker, 1)
-                    if open_price > close_price:
-                        print(f'{ticker}\t1')
+    # Duyệt qua cả hai thư mục
+    for stock_folder in directories:
+        for file_name in os.listdir(stock_folder):
+            if file_name.endswith('.us.txt'):  # Chỉ xử lý file .us.txt
+                ticker = file_name.split('.')[0]  # Lấy tên file, bỏ phần .us.txt
+                file_path = os.path.join(stock_folder, file_name)
+                process_file(file_path, ticker, nyse_tickers)
 
 if __name__ == "__main__":
     mapper()
+
 
 
 
