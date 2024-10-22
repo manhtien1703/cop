@@ -1,42 +1,51 @@
-import sys
+import os
 import csv
+import sys
+
+# Hàm chuyển đổi tên file sang ticker
+def convert_ticker_name(ticker):
+    return ticker.replace('.', '-').lower()
+
+# Đọc stock_info.csv và chỉ lấy các cổ phiếu thuộc NYSE
+def load_nyse_tickers():
+    nyse_tickers = set()
+    with open('stock_info.csv', 'r') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            if row['Exchange'] == 'NYSE':  # Chỉ lấy các công ty trên NYSE
+                nyse_tickers.add(convert_ticker_name(row['Ticker']))
+    return nyse_tickers
 
 # Hàm xử lý file cổ phiếu
 def process_file(file_path, ticker, nyse_tickers):
+    # Kiểm tra nếu ticker thuộc NYSE
     if ticker in nyse_tickers:
-        for line in sys.stdin:  # Đọc từ stdin (điều này giúp đọc input từ Hadoop)
-            data = line.strip().split(',')
-            open_price = float(data[1])  # Giá Open
-            close_price = float(data[4])  # Giá Close
+        with open(file_path, 'r') as file:
+            next(file)  # Bỏ qua dòng tiêu đề
+            for line in file:
+                data = line.strip().split(',')
+                open_price = float(data[1])  # Giá Open
+                close_price = float(data[4])  # Giá Close
 
-            if open_price > close_price:
-                print(f'{ticker}\t1')
+                # Nếu giá Open > Close, phát ra (ticker, 1)
+                if open_price > close_price:
+                    print '{0}\t{1}'.format(ticker, 1)
 
-# Đọc stock_info.csv từ stdin
-def load_nyse_tickers():
-    nyse_tickers = set()
-    for line in sys.stdin:  # Đọc từ stdin
-        row = line.strip().split(',')
-        if row[0] == 'NYSE':  # Chỉ lấy các công ty trên NYSE
-            nyse_tickers.add(convert_ticker_name(row[1]))  # Chỉ lấy Ticker
-    return nyse_tickers
-
-# Mapper function
+# Hàm mapper
 def mapper():
     nyse_tickers = load_nyse_tickers()  # Tải ticker thuộc NYSE
-    for line in sys.stdin:  # Đọc từ input
-        ticker = line.strip().split('.')[0]
-        process_file(ticker)
+    directories = ['Stocks', 'ETFs']  # Duyệt qua cả thư mục Stocks và ETFs
+
+    # Duyệt qua cả hai thư mục
+    for stock_folder in directories:
+        for file_name in os.listdir(stock_folder):
+            if file_name.endswith('.us.txt'):  # Chỉ xử lý file .us.txt
+                ticker = file_name.split('.')[0]  # Lấy tên file, bỏ phần .us.txt
+                file_path = os.path.join(stock_folder, file_name)
+                process_file(file_path, ticker, nyse_tickers)
 
 if __name__ == "__main__":
     mapper()
-
-
-
-
-
-
-import sys
 
 # Reducer function
 def reducer():
@@ -51,13 +60,13 @@ def reducer():
         else:
             if current_ticker:
                 # In ra ticker khi có giá Open > Close
-                print(f'{current_ticker}\t{count}')
+                print '{0}\t{1}'.format(current_ticker, count)
             current_ticker = ticker
             count = int(value)
 
     # In ticker cuối cùng
     if current_ticker:
-        print(f'{current_ticker}\t{count}')
+        print '{0}\t{1}'.format(current_ticker, count)
 
 if __name__ == "__main__":
     reducer()
