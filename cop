@@ -1,53 +1,8 @@
-import os
-import csv
+# -*- coding: utf-8 -*-
+
 import sys
 
-# Hàm chuyển đổi tên file sang ticker
-def convert_ticker_name(ticker):
-    return ticker.replace('.', '-').lower()
-
-# Đọc stock_info.csv và chỉ lấy các cổ phiếu thuộc NYSE
-def load_nyse_tickers():
-    nyse_tickers = set()
-    with open('stock_info.csv', 'r') as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            if row['Exchange'] == 'NYSE':  # Chỉ lấy các công ty trên NYSE
-                nyse_tickers.add(convert_ticker_name(row['Ticker']))
-    return nyse_tickers
-
-# Hàm xử lý file cổ phiếu
-def process_file(file_path, ticker, nyse_tickers):
-    # Kiểm tra nếu ticker thuộc NYSE
-    if ticker in nyse_tickers:
-        with open(file_path, 'r') as file:
-            next(file)  # Bỏ qua dòng tiêu đề
-            for line in file:
-                data = line.strip().split(',')
-                open_price = float(data[1])  # Giá Open
-                close_price = float(data[4])  # Giá Close
-
-                # Nếu giá Open > Close, phát ra (ticker, 1)
-                if open_price > close_price:
-                    print '{0}\t{1}'.format(ticker, 1)
-
-# Hàm mapper
-def mapper():
-    nyse_tickers = load_nyse_tickers()  # Tải ticker thuộc NYSE
-    directories = ['Stocks', 'ETFs']  # Duyệt qua cả thư mục Stocks và ETFs
-
-    # Duyệt qua cả hai thư mục
-    for stock_folder in directories:
-        for file_name in os.listdir(stock_folder):
-            if file_name.endswith('.us.txt'):  # Chỉ xử lý file .us.txt
-                ticker = file_name.split('.')[0]  # Lấy tên file, bỏ phần .us.txt
-                file_path = os.path.join(stock_folder, file_name)
-                process_file(file_path, ticker, nyse_tickers)
-
-if __name__ == "__main__":
-    mapper()
-
-# Reducer function
+# Hàm reducer
 def reducer():
     current_ticker = None
     count = 0
@@ -60,13 +15,13 @@ def reducer():
         else:
             if current_ticker:
                 # In ra ticker khi có giá Open > Close
-                print '{0}\t{1}'.format(current_ticker, count)
+                print '%s\t%d' % (current_ticker, count)
             current_ticker = ticker
             count = int(value)
 
     # In ticker cuối cùng
     if current_ticker:
-        print '{0}\t{1}'.format(current_ticker, count)
+        print '%s\t%d' % (current_ticker, count)
 
 if __name__ == "__main__":
     reducer()
