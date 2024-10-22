@@ -1,46 +1,74 @@
-#mapper1
-import sys
+import os
 import csv
-
-# Load stock info to identify NYSE stocks
-stock_info = {}
-with open('stock_info.csv') as csvfile:
-    reader = csv.DictReader(csvfile)
-    for row in reader:
-        if row['Exchange'] == 'NYSE':
-            stock_info[row['Ticker']] = row['Name']
-
-# Mapper processing the stock data
-for line in sys.stdin:
-    # Parse the line into date and stock information
-    values = line.strip().split(',')
-    if len(values) == 7:
-        date, open_price, high, low, close_price, volume, open_int = values
-
-        # Filter for rows with valid numeric values
-        try:
-            open_price = float(open_price)
-            close_price = float(close_price)
-        except ValueError:
-            continue
-
-        # Extract ticker from file name (assuming ticker is part of file name in HDFS)
-        filename = os.environ['map_input_file']
-        ticker = os.path.basename(filename).replace('.txt', '')
-
-        # Check if ticker is in NYSE stocks
-        if ticker in stock_info:
-            # If open price is higher than close price, emit the result
-            if open_price > close_price:
-                print(f"{ticker},{stock_info[ticker]}")
-#reducer1
 import sys
 
-current_ticker = None
+# Hàm chuyển đổi tên file sang ticker
+def convert_ticker_name(ticker):
+    return ticker.replace('.', '-').lower()
 
-# Reducer logic to remove duplicates
-for line in sys.stdin:
-    ticker, name = line.strip().split(',')
-    if ticker != current_ticker:
-        print(f"{ticker},{name}")
-        current_ticker = ticker
+# Đọc ticker và các tên công ty từ stock_info.csv vào một dictionary
+def load_stock_info():
+    stock_info = {}
+    with open('stock_info.csv', 'r') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            if row['Exchange'] == 'NYSE':  # Chỉ lấy các công ty trên NYSE
+                stock_info[convert_ticker_name(row['Ticker'])] = row['Name']
+    return stock_info
+
+# Tạo stock_info dictionary từ file stock_info.csv
+stock_info = load_stock_info()
+
+# Mapper function
+def mapper():
+    stock_folder = 'Stocks'
+
+    for file_name in os.listdir(stock_folder):
+        # Lấy tên file và loại bỏ đuôi '.us.txt' nếu có
+        ticker = file_name.replace('.us.txt', '').split('.')[0]
+
+        # Kiểm tra nếu ticker thuộc NYSE
+        if ticker in stock_info:
+            with open(os.path.join(stock_folder, file_name), 'r') as file:
+                reader = csv.DictReader(file)
+                for row in reader:
+                    open_price = float(row['Open'])
+                    close_price = float(row['Close'])
+                    # Phát ra cặp (Ticker, (Open, Close))
+                    print(f'{ticker}\t{open_price},{close_price}')
+
+if __name__ == "__main__":
+    mapper()
+
+
+import sys
+
+# Reducer function
+def reducer():
+    current_ticker = None
+    found_condition = False
+    stock_info = load_stock_info()
+
+    for line in sys.stdin:
+        ticker, values = line.strip().split('\t')
+        open_price, close_price = map(float, values.split(','))
+
+        if ticker != current_ticker:
+            if current_ticker and found_condition:
+                # In ra kết quả nếu tìm thấy công ty thoả mãn điều kiện
+                print(f'{current_ticker}\t{stock_info[current_ticker]}')
+
+            # Bắt đầu ticker mới
+            current_ticker = ticker
+            found_condition = False
+
+        # Kiểm tra nếu điều kiện Open > Close
+        if open_price > close_price:
+            found_condition = True
+
+    # In kết quả cho ticker cuối cùng
+    if current_ticker and found_condition:
+        print(f'{current_ticker}\t{stock_info[current_ticker]}')
+
+if __name__ == "__main__":
+    reducer()
